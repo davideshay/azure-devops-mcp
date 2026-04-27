@@ -9,7 +9,7 @@ FROM node:bookworm-slim AS builder
 RUN apt-get update && apt-get install -y build-essential python3
 WORKDIR /usr/app
 COPY --from=deps /usr/app/node_modules ./node_modules
-COPY server/. .
+COPY /. .
 RUN npm run build
 # Create node-modules for production version (only dev dependencies)
 FROM node:bookworm-slim AS prod-deps
