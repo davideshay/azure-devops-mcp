@@ -21,7 +21,7 @@ RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 FROM node:bookworm-slim AS production
 WORKDIR /usr/app
 COPY --from=prod-deps /usr/app/node_modules ./node_modules
-COPY --from=builder /usr/app/build ./build
+COPY --from=builder /usr/app/dist ./dist
 ENV NODE_ENV=production
-CMD ["node","build/app.js"]
+CMD ["node","dist/app.js"]
 EXPOSE 3000
