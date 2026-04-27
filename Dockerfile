@@ -8,7 +8,7 @@ RUN npm ci
 FROM node:bookworm-slim AS builder
 RUN apt-get update && apt-get install -y build-essential python3
 WORKDIR /usr/app
-COPY --from=deps /usr/app/server/node_modules ./node_modules
+COPY --from=deps /usr/app/node_modules ./node_modules
 COPY server/. .
 RUN npm run build
 # Create node-modules for production version (only dev dependencies)
