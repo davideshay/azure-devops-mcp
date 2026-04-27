@@ -16,7 +16,7 @@ FROM node:bookworm-slim AS prod-deps
 RUN apt-get update && apt-get install -y build-essential python3
 WORKDIR /usr/app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 # Create final image
 FROM node:bookworm-slim AS production
 WORKDIR /usr/app
