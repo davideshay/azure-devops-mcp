@@ -23,6 +23,6 @@ WORKDIR /usr/app
 COPY --from=prod-deps /usr/app/node_modules ./node_modules
 COPY --from=builder /usr/app/dist ./dist
 ENV NODE_ENV=production
-CMD ["npx", "mcp-proxy", "--port", "8080", "--shell", "--", "node", "dist/app.js"]
+CMD ["npx", "mcp-proxy", "--port", "8080", "--shell", "--", "node", "dist/index.js", "-a","envvar"]
 #CMD ["node","dist/app.js"]
 EXPOSE 3000
